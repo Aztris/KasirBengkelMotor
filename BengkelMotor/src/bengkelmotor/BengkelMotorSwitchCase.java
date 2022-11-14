@@ -24,75 +24,77 @@ public class BengkelMotorSwitchCase {
         int oli = input.nextInt();
         
         int harga_oli;
-        String hadiah="-";
+        String hadiah="-", strOli="-";
         switch (oli) {
-            case 1:
+            case 1 -> {
+                strOli="Top 1";
                 harga_oli=15000;
                 if(jenis==1){
                     harga_oli=0;
                     hadiah = "1 oli jenis Top 1";
                 }
-                break;
-            case 2:
+            }
+            case 2 -> {
                 harga_oli=10000;
-                break;
-            case 3:
+                strOli="Top 2";
+            }
+            case 3 -> {
                 harga_oli = 5000;
-                break;
-            default:
-                harga_oli = 0;
+                strOli="Top 3";
+            }
+            default -> harga_oli = 0;
         }
         
         int service=0,potongan=0,diskon=0, biaya=0;
         String motor="-";
         switch (jenis) {
-            case 1:
+            case 1 -> {
                 motor = "Matic";
                 service = 25000;
                 
-                biaya = service + harga_oli;
                 if(tahun<2010){
                     diskon = 10;
-                    potongan = biaya * diskon / 100;
                 }
-                break;
-            case 2:
+            }
+            case 2 -> {
                 motor="Bebek";
                 service = 20000;
                 
-                biaya = service + harga_oli;
                 if(tahun<2010){
                     diskon = 5;
-                    potongan = biaya * diskon / 100;
                 }
-                break;
-            case 3:
+            }
+            case 3 -> {
                 motor = "Manual";
                 service = 30000;
                 
-                biaya = service + harga_oli;
-                if(tahun<2010){
+                if(tahun<2005){
                     diskon = 5;
-                    potongan = biaya * diskon / 100;
                 }
-                break;
-            default:
-                System.exit(0);
+            }
+            default -> System.exit(0);
         }
         
+        biaya = service + harga_oli;
+        
+        potongan = biaya * diskon / 100;        
         
         int total = biaya - potongan;
         
         System.out.println("");
         System.out.println("===============================");
-        System.out.println("Jenis Motor : "+motor);
-        System.out.println("Tahun : "+tahun);
-        System.out.println("Hadiah : "+hadiah);
-        System.out.println("Diskon : "+diskon+"%");
-        System.out.println("Potongan : "+potongan);
-        System.out.println("TOTAL : "+total);
+        System.out.println("Jenis Motor   : "+motor);
+        System.out.println("Tahun         : "+tahun);
+        System.out.println("Biaya Service : Rp."+service);
+        System.out.println("Oli           : "+strOli);
+        System.out.println("Harga oli     : Rp."+harga_oli);
+        System.out.println("Biaya         : Rp."+biaya);
+        System.out.println("Hadiah        : "+hadiah);
+        System.out.println("Diskon        : "+diskon+"%");
+        System.out.println("Potongan      : Rp."+potongan);
+        System.out.println("TOTAL         : Rp."+total);
         System.out.println("");
-        System.out.print("Bayar : "); int bayar = input.nextInt();
+        System.out.print("Bayar : Rp."); int bayar = input.nextInt();
         int kembalian = bayar - total;
         System.out.println("Kembali : "+kembalian);
         System.out.println("===============================");
